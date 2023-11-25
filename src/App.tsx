@@ -1,25 +1,27 @@
+import { Box, SxProps, type Theme as ThemeType } from '@mui/material';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Events from './components/Events';
+import Theme from './theme/theme';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+const RootBoxStyles: SxProps<ThemeType> = {
+  overflow: 'hidden',
+  width: '100vw',
+  height: '100vh',
+
+}
 
 function App() {
+  const theme = React.useMemo(() => createTheme(Theme()), []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={RootBoxStyles}>
+        <Events />
+      </Box>
+    </ThemeProvider>
   );
 }
 
