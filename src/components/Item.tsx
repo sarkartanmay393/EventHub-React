@@ -1,20 +1,5 @@
-import { TimelineOppositeContent, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from "@mui/lab";
-import { Box, SxProps, Theme, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { TimelineDot, TimelineConnector } from "@mui/lab";
 import EventCard from "./EventCard";
-
-const bodyTextStyles: SxProps<Theme> = {
-  fontSize: '18px',
-  color: 'gray',
-  fontWeight: 520,
-}
-
-const hTextStyles: SxProps<Theme> = {
-  fontSize: '24px',
-  color: 'black',
-  fontWeight: 600,
-  lineHeight: 1.2
-}
 
 interface TLItemProps {
   eventInfo: {
@@ -28,20 +13,21 @@ interface TLItemProps {
   };
 }
 
+// eslint-disable-next-line no-empty-pattern
 export default function TLItem({ eventInfo }: TLItemProps) {
   return (
-    <Box display='flex'>
-      <TimelineOppositeContent sx={{ border: '0px solid red' }} color="text.primary">
-        <Typography variant='h6' sx={hTextStyles}>{eventInfo.dayname}</Typography>
-        <Typography variant='body1' sx={bodyTextStyles}>{eventInfo.date}</Typography>
-      </TimelineOppositeContent>
-      <TimelineSeparator>
+    <div className="flex justify-between">
+      <div color="text.primary" className="w-[20%]">
+        <h6 className="scroll-m-20 text-3xl font-normal tracking-tight">{eventInfo.dayname}</h6>
+        <p className="text-xl font-normal tracking-tight text-gray-400">{eventInfo.date}</p>
+      </div>
+      <div className="flex flex-col items-center m-0 p-0">
         <TimelineDot sx={{ background: 'white', border: '1.2px solid grey', boxShadow: 0 }} />
-        <TimelineConnector sx={{ width: '1px', bgcolor: grey[400] }} />
-      </TimelineSeparator>
-      <TimelineContent sx={{ border: '0px solid red' }}>
+        <TimelineConnector sx={{ width: '1px' }} />
+      </div>
+      <div className="w-[70%]">
         <EventCard {...eventInfo} />
-      </TimelineContent>
-    </Box>
+      </div>
+    </div>
   );
 }

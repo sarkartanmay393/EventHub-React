@@ -1,82 +1,45 @@
 import React from 'react';
-import { common, grey } from '@mui/material/colors';
-import { Box, Button, SxProps, Theme, ToggleButton, ToggleButtonGroup, Typography, useTheme } from '@mui/material';
 
 import D from '../d.json';
 import TLItem from "./Item";
-import EventModal from './EventModal';
 
-const eventBoxStyles: SxProps<Theme> = {
-  width: '100%',
-  height: '100%',
-  display: 'grid',
-  border: '1px solid red',
-
-  // background: '-moz-linear-gradient(90deg,rgba(237,237,237,1)0%,rgba(27,180,200,1)78%,rgba(110,231,255,1)100%)',
-  // background:'-webkit-linear-gradient(90deg,rgba(237,237,237,1)0%,rgba(27,180,200,1)78%,rgba(110,231,255,1)100%)',
+const eventDivStyles = {
   background: 'linear-gradient(250deg,rgba(110,231,255,0.3)0%,rgba(229,229,229,1)60%)',
   filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#ededed",endColorstr="#6ee7ff",GradientType=1)',
 }
 
-const headerStyles: SxProps<Theme> = {
-  height: '100px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  borderBottom: `1px solid ${grey[400]}`,
-
-  marginX: { xs: 0, md: '10%' },
-  paddingX: { xs: 0, md: '10px' },
-}
-
-const contentStyles: SxProps<Theme> = {
-  height: '98%',
-  overflowY: 'scroll',
-  display: 'grid',
-  gap: '18px',
-
-  // border: '1px solid red',
-  marginX: { xs: 0, md: '10%' },
-  marginY: '4px',
-}
+import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
+import EventModal from './EventModal';
+import { IEvent } from '@/lib/interfaces';
 
 
 function Events() {
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(false);
   const [toggle, setToggle] = React.useState('upcoming');
-  const theme = useTheme();
+  const [events, setEvents] = React.useState<IEvent[]>(D.events);
 
   return (
-    <Box sx={eventBoxStyles}>
-      <Box sx={headerStyles}>
-        <Typography variant='h3'>Events</Typography>
-        <Box display='flex' alignItems='center' gap={4} color='black'>
-          <Button onClick={() => setOpen(true)} disableElevation color='secondary' variant='contained' sx={{ display: { xs: 'none', md: 'inline' }, fontWeight: 600, color: common.white }}>Create</Button>
-          <ToggleButtonGroup
-            exclusive
-            value={toggle}
-            color='secondary'
-            onChange={(_, s) => setToggle(s)}
-            sx={{
-              height: '40px',
-            }}
-          >
-            <ToggleButton value='upcoming'>Upcoming</ToggleButton>
-            <ToggleButton value='past'>Past</ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
-      </Box>
-      <Box sx={contentStyles}>
+    <div className='w-[100%] h-[100%] flex flex-col gap-0' style={eventDivStyles}>
+      <div className='h-[120px] flex items-center justify-between mx-0 px-0 md:mx-[10%]' >
+        <h3 className="scroll-m-20 text-4xl font-semibold tracking-tight">Events</h3>
+        <div className='flex items-center gap-4 text-black'>
+          <EventModal />
+          <ToggleGroup type='single' value={toggle}>
+            <ToggleGroupItem onClick={() => setToggle('upcoming')} value='upcoming'>Upcoming</ToggleGroupItem>
+            <ToggleGroupItem onClick={() => setToggle('past')} value='past'>Past</ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+      </div>
+      <div className='h-[100%] flex flex-col gap-[18px] my-[4px] mx-0 md:mx-[10%] overflow-scroll' style={{ border: '0px solid red' }}>
         {
-          D.events.map((d, i) => {
+          events.map((d, i) => {
             return (
               <TLItem key={i} eventInfo={d} />
             )
           })
         }
-      </Box>
-      <EventModal open={open} setOpen={setOpen} />
-    </Box >
+      </div>
+    </div >
   );
 }
 
