@@ -2,21 +2,33 @@
   "events": [
     {
       "time": "12:30 PM",
-      "title": "Get Started with Low-code REST API Development using Syncloop",
-      "author": "By Tanmay",
+      "title": "Get Started with Low-code REST API Development using",
+      "author": "Tanmay",
       "mode": "Virtual",
       "image": "https://dub.sh/SxxNYpM",
       "dayname": "Wednesday",
-      "date": "December 20"
+      "date": "2023-11-20",
+      "dt": "Mon Nov 20 2023 12:30:09 GMT+0530 (India Standard Time)"
+    },
+    {
+      "time": "12:30 PM",
+      "title": "Low-code REST API Development using Docker, K8s, Random",
+      "author": "Tanmay",
+      "mode": "Virtual",
+      "image": "https://dub.sh/SxxNYpM",
+      "dayname": "Wednesday",
+      "date": "2023-12-05",
+      "dt": "Mon Nov 20 2023 12:30:09 GMT+0530 (India Standard Time)"
     },
     {
       "time": "03:30 PM",
-      "title": "Get Started with Low-code REST API Development using Syncloop",
-      "author": "By Tanmay",
+      "title": "REST API Development using Syncloop",
+      "author": "Tanmay",
       "mode": "Virtual",
       "image": "https://dub.sh/SxxNYpM",
       "dayname": "Wednesday",
-      "date": "December 25"
+      "date": "2023-11-08",
+      "dt": "Mon Nov 08 2023 03:30:09 GMT+0530 (India Standard Time)"
     }
   ]
 }

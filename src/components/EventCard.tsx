@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 
-
 const bodyTextStyles = {
   fontSize: '18px',
   color: 'gray',
@@ -30,13 +29,13 @@ interface EventCardProps {
 
 function EventCard({ time, title, author, mode, image }: EventCardProps) {
   return (
-    <div className='w-[320px] lg:w-[100%] h-[100%] flex items-center justify-between py-[12px] px-[22px] rounded-[8px] bg-[whitesmoke]'>
-      <div className='grid gap-[8px]'>
+    <div id={`${time}-${title}`} className='w-[320px] lg:w-[100%] h-[100%] flex items-center justify-between py-[12px] px-[22px] rounded-[8px] bg-[whitesmoke]'>
+      <div className='flex-1 grid gap-[8px]'>
         <h6 style={bodyTextStyles}>{time}</h6>
         <h6 style={hTextStyles}>{title}</h6>
         <div className='flex gap-1'>
           <ExploreOutlinedIcon />
-          <p style={bodyTextStyles}>{author}</p>
+          <p style={bodyTextStyles}>By {author}</p>
         </div>
         <div className='flex gap-1'>
           <VideocamOutlinedIcon />
@@ -62,7 +61,7 @@ function EventCard({ time, title, author, mode, image }: EventCardProps) {
           </div>
         </div>
       </div>
-      <div className='h-[100%] grid pt-[8px]'>
+      <div className=' grid pt-[8px]'>
         <img width='240px' alt='' src={image} style={{ borderRadius: '6px' }} />
       </div>
     </div>

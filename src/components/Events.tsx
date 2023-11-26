@@ -23,21 +23,35 @@ function Events() {
       <div className='h-[120px] flex items-center justify-between mx-0 px-0 md:mx-[10%]' >
         <h3 className="scroll-m-20 text-4xl font-semibold tracking-tight">Events</h3>
         <div className='flex items-center gap-4 text-black'>
-          <EventModal />
-          <ToggleGroup type='single' value={toggle}>
-            <ToggleGroupItem onClick={() => setToggle('upcoming')} value='upcoming'>Upcoming</ToggleGroupItem>
-            <ToggleGroupItem onClick={() => setToggle('past')} value='past'>Past</ToggleGroupItem>
+          <EventModal setEvents={setEvents} />
+          <ToggleGroup type='single' value={toggle} className='p-[2px] border-2 border-solid border-grey-300 bg-gray-300 rounded-[9px]'>
+            <ToggleGroupItem className='data-[state=on]:bg-[#8ee7ff] hover:bg-transparent hover:text-black' onClick={() => setToggle('upcoming')} value='upcoming'>Upcoming</ToggleGroupItem>
+            <ToggleGroupItem className='data-[state=on]:bg-[#8ee7ff] hover:bg-transparent hover:text-black' onClick={() => setToggle('past')} value='past'>Past</ToggleGroupItem>
           </ToggleGroup>
         </div>
       </div>
       <div className='h-[100%] flex flex-col gap-[18px] my-[4px] mx-0 md:mx-[10%] overflow-scroll' style={{ border: '0px solid red' }}>
-        {
-          events.map((d, i) => {
-            return (
-              <TLItem key={i} eventInfo={d} />
-            )
-          })
-        }
+        {events.reverse().map((d, i) => {
+          const cd = new Date();
+          const ed = new Date(d.date);
+          if (toggle === 'upcoming') {
+            if (ed > cd) {
+              return (
+                <TLItem key={i} eventInfo={d} />
+              )
+            } else {
+              return <React.Fragment key={i}></React.Fragment>
+            }
+          } else {
+            if (ed < cd) {
+              return (
+                <TLItem key={i} eventInfo={d} />
+              )
+            } else {
+              return <React.Fragment key={i}></React.Fragment>
+            }
+          }
+        })}
       </div>
     </div >
   );
