@@ -45,7 +45,7 @@ const toggleStyle = (src: string) => ({
   borderRadius: '8px',
   background: `url(${src})`
 });
-const inputIcon = 'https://icon-library.com/images/placeholder-icon/placeholder-icon-12.jpg';
+// const inputIcon = 'https://icon-library.com/images/placeholder-icon/placeholder-icon-12.jpg';
 const ThemeBGList = [
   {
     name: 'minimal',
@@ -402,7 +402,7 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
               <FormField
                 control={form.control}
                 name='img'
-                render={({ field }) => (
+                render={() => (
                   <FormItem className='h-fit w-[100%] flex justify-center items-center'>
                     <div
                       id="image_div"
