@@ -48,7 +48,7 @@ function Events() {
         </div>
       </div>
       <ScrollArea className='h-full mx-4 md:mx-[10%] mb-[8px]' >
-        <div className='flex flex-col gap-[18px]'>
+        <div className='flex flex-col gap-[20px] sm:gap-[18px]'>
           {events.reverse().map((d, i) => {
             const sd = new Date(d.date);
             if (toggle === 'upcoming') {

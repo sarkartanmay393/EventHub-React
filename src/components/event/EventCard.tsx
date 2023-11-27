@@ -33,7 +33,7 @@ import VideocamIcon from '/assets/videocam.svg';
 
 function EventCard({ time, title, author, mode, image, old }: EventCardProps) {
   return (
-    <div className='gap-4 w-[300px] sm:w-full h-full flex flex-col-reverse md:flex-row items-center justify-between py-[14px] px-[22px] rounded-[8px] bg-[whitesmoke]'>
+    <div className='gap-4 w-full h-full flex flex-col-reverse md:flex-row items-center justify-between py-[14px] px-[22px] rounded-[8px] bg-[whitesmoke]'>
       <div className='flex-1 grid gap-[8px]'>
         <h6 style={{ ...bodyTextStyles }} className='hidden md:block'>{time}</h6>
         <h6 style={hTextStyles}>{title}</h6>

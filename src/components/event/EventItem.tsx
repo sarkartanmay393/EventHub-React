@@ -18,8 +18,8 @@ interface EventItemProps {
 export default function EventItem({ eventInfo, eventDate, old }: EventItemProps) {
   const mdn = getMonthAndDayNames(eventDate);
   return (
-    <div className="scroll-m-20 flex justify-between">
-      <div color="text.primary" className="w-[20%]">
+    <div className="scroll-m-20 flex flex-col sm:flex-row justify-between gap-2 sm:gap-0">
+      <div color="text.primary" className="sm:w-[20%]">
         <h6 className="text-xl md:text-3xl font-normal tracking-tight">{mdn.day}</h6>
         <p className="text-md md:text-xl font-normal tracking-tight text-gray-400">{mdn.month}, {eventInfo.date.split('-')[2]}</p>
       </div>
@@ -27,7 +27,7 @@ export default function EventItem({ eventInfo, eventDate, old }: EventItemProps)
         <TimelineDot sx={{ background: 'white', border: '1.2px solid grey', boxShadow: 0 }} />
         <TimelineConnector sx={{ width: '1px' }} />
       </div>
-      <div className="w-[70%]">
+      <div className="w-full sm:w-[70%]">
         <EventCard {...eventInfo} old={old} />
       </div>
     </div>
