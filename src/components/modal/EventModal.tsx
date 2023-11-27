@@ -19,9 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PublicIcon from '@mui/icons-material/Public';
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import ApprovalIcon from '@mui/icons-material/Approval';
 import ReduceCapacityIcon from '@mui/icons-material/ReduceCapacity';
@@ -37,11 +35,12 @@ import { Separator } from '../ui/separator';
 import { Switch } from '../ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
-import { ThemeBGList } from './data';
+import { ThemeBGList, displayImage, handleImgFile } from './data';
 import { IEvent } from '../event/data';
+import CalenderIcon from '/assets/calender3.png';
+import Location2Icon from '/assets/location2.svg';
 
 const toggleStyle = (src: string) => ({
-  // border: '1px solid black',
   height: '72px',
   width: '72px',
   borderRadius: '8px',
@@ -54,6 +53,7 @@ interface EventModalProps {
   eventInfo?: IEvent;
   open?: boolean;
 }
+
 
 export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
   const [themeName, setThemeName] = React.useState('minimal');
@@ -117,27 +117,6 @@ export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
     form.reset();
   }
 
-  const handleImgFile = () => {
-    const imginput = document.getElementById('img_input') as HTMLElement;
-    imginput.click();
-  }
-
-  const displayImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const imgBox = document.getElementById('image_div') as HTMLElement;
-    const files = e.target.files;
-    if (files) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imgUrl = e.target?.result;
-        imgBox.innerHTML = `<img className='h-full w-full' src='${imgUrl}' alt='new_event_cover' />`;
-      }
-      reader.readAsDataURL(file);
-    } else {
-      imgBox.innerHTML = 'No image';
-    }
-  }
-
   const handleThemeToggle = (theme: { name: string; url: string }) => {
     setThemeName(theme.name);
     const imgEle = document.getElementById('theme_img') as HTMLImageElement;
@@ -159,7 +138,7 @@ export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
             className="flex m-0 gap-6 overflow-clip pt-6"
             style={{ border: '0px solid red' }}
           >
-            <div className='w-[50%] h-[100%] grid gap-4 px-0'>
+            <div className='w-full md:w-[60%] h-[100%] grid gap-4 px-0 overflow-clip' style={{ border: '0px solid red' }}>
               <div className='flex items-center gap-2'>
                 <Avatar className='text-[10px]'>
                   <AvatarImage src='' />
@@ -187,12 +166,9 @@ export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
                     </FormItem>
                   )}
               />
-              <div className='flex gap-1'>
-                <CalendarMonthIcon
-                  style={{ fontSize: 38, border: '0px solid red' }}
-                  className='text-gray-500 p-0 m-0'
-                />
-                <Card className='h-full px-[2px] pt-[12px] pb-[6px] flex flex-col gap-1'>
+              <div className='flex gap-[8px]'>
+                <img className='w-[34px] h-fit text-gray-500 p-0 m-0' src={CalenderIcon} alt='' />
+                <Card className='w-full px-[2px] pt-[12px] pb-[6px] flex flex-col gap-1'>
                   <div className='flex items-center gap-1 px-[8px]'>
                     <p style={{ flex: 1 }}>Start</p>
                     <FormField
@@ -252,8 +228,8 @@ export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
                   </div>
                 </Card>
               </div>
-              <div className='flex gap-1' >
-                <FmdGoodIcon className='text-gray-500' style={{ fontSize: 38 }} />
+              <div className='flex gap-[8px]' >
+                <img className='w-[34px] h-fit text-gray-500 p-0 m-0' src={Location2Icon} alt='' />
                 <Card className='w-full flex flex-col p-[8px] gap-1 justify-center'>
                   <p className='ml-[4px] font-normal '>Event Location</p>
                   <FormField

@@ -18,3 +18,24 @@ export const ThemeBGList = [
     url: "/assets/theme_bg/minimal.jpg",
   },
 ];
+
+export const handleImgFile = () => {
+  const imginput = document.getElementById("img_input") as HTMLElement;
+  imginput.click();
+};
+
+export const displayImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const imgBox = document.getElementById("image_div") as HTMLElement;
+  const files = e.target.files;
+  if (files) {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imgUrl = e.target?.result;
+      imgBox.innerHTML = `<img className='h-full w-full' src='${imgUrl}' alt='new_event_cover' />`;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    imgBox.innerHTML = "No image";
+  }
+};

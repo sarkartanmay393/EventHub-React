@@ -1,9 +1,6 @@
 import { Badge } from '../ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
-import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AvatarList } from './data';
 
 const bodyTextStyles = {
@@ -29,6 +26,11 @@ interface EventCardProps {
   old?: boolean;
 }
 
+
+import UserIcon from '/assets/user.svg';
+import Location3Icon from '/assets/location3.svg';
+import VideocamIcon from '/assets/videocam.svg';
+
 function EventCard({ time, title, author, mode, image, old }: EventCardProps) {
   return (
     <div className='gap-4 w-[300px] sm:w-full h-full flex flex-col-reverse md:flex-row items-center justify-between py-[14px] px-[22px] rounded-[8px] bg-[whitesmoke]'>
@@ -37,17 +39,19 @@ function EventCard({ time, title, author, mode, image, old }: EventCardProps) {
         <h6 style={hTextStyles}>{title}</h6>
         <div className='flex flex-col gap-1 my-1'>
           <div className='flex items-center gap-1'>
-            <AccountCircleIcon className='text-gray-700' />
+            <img className='w-[20px]' src={UserIcon} alt='' />
             <p style={{ ...bodyTextStyles, fontSize: '16px' }}>By {author}</p>
           </div>
           <div className='flex items-center gap-1'>
-            {mode == 'Virtual' ? <VideocamOutlinedIcon className='text-gray-700' /> : <FmdGoodIcon className='text-gray-700' />}
+            {mode == 'Virtual' ?
+              <img className='w-[20px]' src={VideocamIcon} alt='' /> :
+              <img className='w-[20px]' src={Location3Icon} alt='' />}
             <p style={{ ...bodyTextStyles, fontSize: '16px' }}>{mode}</p>
           </div>
         </div>
         <div className='flex justify-between items-center'>
           <div className='flex gap-2 items-center'>
-            <Badge className={`${old?'bg-red-300':'bg-[#0555c6]'} text-[16px]`}>
+            <Badge className={`${old ? 'bg-red-300' : 'bg-[#0555c6]'} text-[16px]`}>
               {old ? 'Ended' : 'Invited'}
             </Badge>
             <div className='flex space-x-[-18px]'>
