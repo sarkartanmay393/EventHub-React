@@ -116,6 +116,7 @@ Running a development environment for this project will be the easiest thing in 
 - Run the following command to start
 
   ```zsh
+  cd EventHub-React
   npm install
   npm run dev
   ```
