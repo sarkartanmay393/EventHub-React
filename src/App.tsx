@@ -1,18 +1,8 @@
-
-
-import Events from './components/Events';
-
-const RootBoxStyles = {
-  overflow: 'hidden',
-  width: '100vw',
-  height: '100vh',
-
-}
+import Events from './pages/Events';
 
 function App() {
-
   return (
-    <div className='' style={RootBoxStyles}>
+    <div className='w-screen h-screen overflow-hidden'>
       <Events />
     </div>
   );

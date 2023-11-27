@@ -27,43 +27,26 @@ import ApprovalIcon from '@mui/icons-material/Approval';
 import ReduceCapacityIcon from '@mui/icons-material/ReduceCapacity';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FontDownloadIcon from '@mui/icons-material/FontDownload';
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 
-import { Input } from './ui/input';
-import { Button } from './ui/button';
-import { Avatar, AvatarImage } from './ui/avatar';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useForm } from 'react-hook-form';
-import { Separator } from './ui/separator';
-import { Switch } from './ui/switch';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { ToggleGroup, ToggleGroupItem } from './ui/toggle-group';
-import { IEvent } from '@/lib/interfaces';
+import { Separator } from '../ui/separator';
+import { Switch } from '../ui/switch';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
+import { ThemeBGList } from './data';
+import { IEvent } from '../event/data';
 
 const toggleStyle = (src: string) => ({
+  // border: '1px solid black',
   height: '72px',
   width: '72px',
-  // border: '1px solid black',
   borderRadius: '8px',
   background: `url(${src})`
 });
-// const inputIcon = 'https://icon-library.com/images/placeholder-icon/placeholder-icon-12.jpg';
-const ThemeBGList = [
-  {
-    name: 'minimal',
-    url: '/src/assets/theme_bg/minimal.jpg',
-  },
-  {
-    name: 'holiday',
-    url: '/src/assets/theme_bg/holiday.jpg',
-  },
-  {
-    name: 'party',
-    url: '/src/assets/theme_bg/party.jpeg',
-  },
-  {
-    name: 'formal',
-    url: '/src/assets/theme_bg/minimal.jpg',
-  }
-];
 
 interface EventModalProps {
   event?: IEvent[];
@@ -72,7 +55,7 @@ interface EventModalProps {
   open?: boolean;
 }
 
-export default function EventModal({ setEvents, eventInfo, open }: EventModalProps) {
+export default function EventModal({ setEvents, eventInfo }: EventModalProps) {
   const [themeName, setThemeName] = React.useState('minimal');
   const currentDate = new Date('02-02-2024');
   const yy = currentDate.getFullYear();
@@ -110,7 +93,7 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
       endTime: "",
       location: "",
       themeName: "minimal",
-      img: eventInfo && eventInfo.image || "/src/assets/theme_bg/minimal.jpg",
+      img: eventInfo && eventInfo.image || "/assets/theme_bg/minimal.jpg",
       mode: "Virtual",
       author: "Lovely Visitor",
       typesafe: "default",
@@ -123,22 +106,21 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     setEvents((p) => ([{
       title: values.eventName,
       author: values.author,
       time: values.startTime,
       date: values.startDate,
       image: values.img,
-      dayname: 'Saturday',
-      mode: values.location.length < 3 ? 'Virtual' : 'Onsite',
+      mode: values.location.length < 3 ? 'Virtual' : values.location,
     }, ...p]));
+    form.reset();
   }
 
-  // const handleImgFile = () => {
-  //   const imginput = document.getElementById('img_input') as HTMLElement;
-  //   imginput.click();
-  // }
+  const handleImgFile = () => {
+    const imginput = document.getElementById('img_input') as HTMLElement;
+    imginput.click();
+  }
 
   const displayImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const imgBox = document.getElementById('image_div') as HTMLElement;
@@ -163,13 +145,12 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
     form.setValue('img', theme.url);
   }
 
-
   const subscribe = form.watch();
 
   return (
-    <Dialog open={open} modal>
+    <Dialog modal>
       <DialogTrigger>
-        <Button size='lg'>Create</Button>
+        <Button>Create</Button>
       </DialogTrigger>
       <DialogContent className='' style={{ maxWidth: '780px' }}>
         <Form {...form} >
@@ -180,8 +161,9 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
           >
             <div className='w-[50%] h-[100%] grid gap-4 px-0'>
               <div className='flex items-center gap-2'>
-                <Avatar>
-                  <AvatarImage src='https://dub.sh/4OpRHmb' />
+                <Avatar className='text-[10px]'>
+                  <AvatarImage src='' />
+                  <AvatarFallback className='bg-blue-300'>root</AvatarFallback>
                 </Avatar>
                 <div className='flex flex-col space-y-[-4px]' >
                   <p className='text-sm text-gray-400'>Create Under</p>
@@ -196,7 +178,7 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                     <FormItem>
                       <FormControl>
                         <Input
-                          className='p-0 my-2 text-3xl text-gray-500 font-semibold focus-visible:ring-0 shadow-none border-0'
+                          className='p-0 my-2 text-3xl font-semibold focus-visible:ring-0 shadow-none border-0'
                           placeholder="Event name"
                           {...field}
                         />
@@ -207,17 +189,10 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
               />
               <div className='flex gap-1'>
                 <CalendarMonthIcon
-                  style={{ fontSize: 42, border: '0px solid red' }}
+                  style={{ fontSize: 38, border: '0px solid red' }}
                   className='text-gray-500 p-0 m-0'
                 />
-                <Card
-                  style={{
-                    height: 'fit-content',
-                    padding: '2px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 1
-                  }}>
+                <Card className='h-full px-[2px] pt-[12px] pb-[6px] flex flex-col gap-1'>
                   <div className='flex items-center gap-1 px-[8px]'>
                     <p style={{ flex: 1 }}>Start</p>
                     <FormField
@@ -228,7 +203,6 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                           <FormControl>
                             <Input type='date' {...field} />
                           </FormControl>
-                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -240,7 +214,6 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                           <FormControl>
                             <Input type='time' {...field} />
                           </FormControl>
-                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -280,25 +253,24 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                 </Card>
               </div>
               <div className='flex gap-1' >
-                <FmdGoodIcon className='text-gray-500' style={{ fontSize: 42 }} />
-                <Card style={{ width: '100%', padding: '2px' }}>
-                  <div className=''>
-                    <p className='ml-[12px]'>Add Offline Event Location</p>
-                    <FormField
-                      control={form.control}
-                      name='location'
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input placeholder='Offline event location' {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+                <FmdGoodIcon className='text-gray-500' style={{ fontSize: 38 }} />
+                <Card className='w-full flex flex-col p-[8px] gap-1 justify-center'>
+                  <p className='ml-[4px] font-normal '>Event Location</p>
+                  <FormField
+                    control={form.control}
+                    name='location'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder='Bengaluru, India' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </Card>
               </div>
+
               <div className='grid gap-1 h-[100%]'>
                 <p className='text-gray-500 font-semibold'>Event Options:</p>
                 <Card className='flex flex-col h-[100%]'>
@@ -403,16 +375,16 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                 control={form.control}
                 name='img'
                 render={() => (
-                  <FormItem className='h-fit w-[100%] flex justify-center items-center'>
+                  <FormItem className='relative h-fit w-[100%] flex justify-center items-center'>
                     <div
                       id="image_div"
                       className='relative flex justify-center items-center h-[280px] w-[100%] rounded-[8px] overflow-clip'
-                      style={{ border: '1px solid black' }}
+                      style={{ border: '1px solid gray' }}
                     >
                       <img
                         id='theme_img'
-                        className='h-full'
-                        src='/src/assets/theme_bg/minimal.jpg'
+                        className='h-full object-cover'
+                        src={ThemeBGList[0].url}
                         alt='new_event_cover'
                       />
                       <div className='absolute w-full mx-2' style={{ border: '0px solid red' }}>
@@ -423,17 +395,17 @@ export default function EventModal({ setEvents, eventInfo, open }: EventModalPro
                       <Input
                         id='img_input'
                         accept="image/*"
-                        className='w-[28px] h-[28px] bg-white rounded-sm'
+                        className='w-[28px] h-[28px] bg-transparent rounded-sm opacity-0'
                         type='file'
                         onChange={(e) => displayImage(e)}
                       />
                     </FormControl>
-                    {/* <img
+                    <AddPhotoAlternateOutlinedIcon
+                      color='action'
                       onClick={handleImgFile}
-                      className='p-1 w-[28px] h-[28px] absolute bottom-0 right-0'
-                      src={inputIcon}
-                      alt=''
-                    /> */}
+                      className='absolute bottom-1 right-1 cursor-pointer'
+                      style={{ fontSize: '22px' }}
+                    />
                   </FormItem>
                 )}
               />
