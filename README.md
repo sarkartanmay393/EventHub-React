@@ -4,7 +4,7 @@
 <br />
 <div align="center">
 
-  <a href="https://github.com/sarkartanmay393/EventManager-React">
+  <a href="https://github.com/sarkartanmay393/EventHub-React">
     <img src="./public/logo.svg" alt="Logo" width="115" height="115">
   </a>
 
@@ -20,15 +20,15 @@
    Your go-to platform for seamless event management! Whether you're organizing, discovering, or attending events, we've got you covered. Effortlessly create and promote events, explore a curated list of upcoming happenings, and connect with a community of event enthusiasts.
 
    <br />
-   <a href="https://github.com/sarkartanmay393/EventManager-React"><strong>Explore Code »</strong></a>
+   <a href="https://github.com/sarkartanmay393/EventHub-React"><strong>Explore Code »</strong></a>
    <br />
    <br />
    <a href="https://eventsmanager-10times.vercel.app/" target="_blank" rel="noopener noreferrer" >View Demo</a>
    ·
-   <a href="https://github.com/sarkartanmay393/EventManager-React/
+   <a href="https://github.com/sarkartanmay393/EventHub-React/
 issues">Report Bug</a>
    ·
-   <a href="https://github.com/sarkartanmay393/EventManager-React/
+   <a href="https://github.com/sarkartanmay393/EventHub-React/
 issues">Request Feature</a>
  </p>
 
@@ -45,9 +45,6 @@ issues">Request Feature</a>
       </ul>
       <ul>
         <li><a href="#things-i-learned">Things I Learned</a></li>
-      </ul>
-      <ul>
-        <li><a href="#packages-i-used">Packages I Used</a></li>
       </ul>
       <ul>
         <li><a href=“#screenshots">Screenshots</a></li>
@@ -72,7 +69,10 @@ issues">Request Feature</a>
 
 ### Built With
 
-<!-- - [![Docker][Docker.com]][Docker-url] -->
+1. Reactjs
+2. Shancd/ui
+3. Tailwind
+4. React Hook Form
 
 ### Things I Learned
 
@@ -80,20 +80,18 @@ issues">Request Feature</a>
 2. Complexiities of Vite
 3. Shadcn UI
 
-### Packages I Used
-
-~none
-
 ### Screenshots
 
-~none
+<details>
+  <summary><strong>Show</strong> </summary>
+  <div style="text-align: center;"> <strong><i>EventHub Home</i></strong></div>
 
-<!-- <details>
-   <summary><strong>Show</strong> </summary>
+  ![EH Homepage](home.png "EventHub Homepage")
 
-<div style="text-align: center;"> <strong><i>Highland Room Outlook</i></strong></div>
-
-![Hinghland Rooms](static/screenshots/highend-room-page.png "Highend Room Page") -->
+  <div style="text-align: center;"> <strong><i>EventHub Modal</i></strong></div>
+  
+  ![EH Create Modal](modal.png "EventHub Create Event Modal")
+</details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -112,7 +110,7 @@ Running a development environment for this project will be the easiest thing in 
 - Clone the repository
 
   ```zsh
-  git clone https://github.com/sarkartanmay393/EventManager-React.git
+  git clone https://github.com/sarkartanmay393/EventHub-React.git
   ```
 
 - Run the following command to start
@@ -138,7 +136,7 @@ Running a development environment for this project will be the easiest thing in 
 - [x] New Responsive UI
 - [ ] Real Project Transformation
 
-See the [open issues](https://github.com/sarkartanmay393/EventManager-React/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/sarkartanmay393/EventHub-React/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
@@ -160,9 +158,9 @@ Don't forget to give the project a star! Thanks again!
 
 ## Contact
 
-Your Name - Tanmay Sarkar [@sarkartanmay393](https://twitter.com/sarkartanmay393) - [hello@tanmaysarkar.tech](mailto:hello@tanmaysarkar.tech)
+Your Name - Tanmay Sarkar [@sarkartanmay393](https://twitter.com/sarkartanmay393) - [hello@tanmaysarkar.tech](mailto:sarkartanmay393@gmail.com)
 
-Project Link: [https://github.com/sarkartanmay393/EventManager-React](https://github.com/sarkartanmay393/EventManager-React)
+Project Link: [https://github.com/sarkartanmay393/EventHub-React](https://github.com/sarkartanmay393/EventHub-React)
 
 **Thanks for visiting my project. If you like it, please give it a star. It will help me a lot. Thanks again!**
 
@@ -171,13 +169,13 @@ Project Link: [https://github.com/sarkartanmay393/EventManager-React](https://gi
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/sarkartanmay393/EventManager-React.svg?style=for-the-badge
-[contributors-url]: https://github.com/sarkartanmay393/EventManager-React/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sarkartanmay393/EventManager-React.svg?style=for-the-badge
-[forks-url]: https://github.com/sarkartanmay393/EventManager-React/network/members
-[stars-shield]: https://img.shields.io/github/stars/sarkartanmay393/EventManager-React.svg?style=for-the-badge
-[stars-url]: https://github.com/sarkartanmay393/EventManager-React/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sarkartanmay393/EventManager-React.svg?style=for-the-badge
-[issues-url]: https://github.com/sarkartanmay393/EventManager-React/issues
+[contributors-shield]: https://img.shields.io/github/contributors/sarkartanmay393/EventHub-React.svg?style=for-the-badge
+[contributors-url]: https://github.com/sarkartanmay393/EventHub-React/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/sarkartanmay393/EventHub-React.svg?style=for-the-badge
+[forks-url]: https://github.com/sarkartanmay393/EventHub-React/network/members
+[stars-shield]: https://img.shields.io/github/stars/sarkartanmay393/EventHub-React.svg?style=for-the-badge
+[stars-url]: https://github.com/sarkartanmay393/EventHub-React/stargazers
+[issues-shield]: https://img.shields.io/github/issues/sarkartanmay393/EventHub-React.svg?style=for-the-badge
+[issues-url]: https://github.com/sarkartanmay393/EventHub-React/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tanmaysrkr
